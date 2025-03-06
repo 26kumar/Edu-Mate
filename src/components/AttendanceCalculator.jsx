@@ -32,7 +32,6 @@ function AttendanceCalculator() {
 
     if (credit === 0) {
       console.log(credit);
-      setWeeksHidden(false);
     }
 
     if (daysToAttend >= 75) {
@@ -42,6 +41,7 @@ function AttendanceCalculator() {
         )}%)`
       );
     } else {
+      setWeeksHidden(false);
       daysToAttend = 3 * total - 4 * present;
       weeksToAttend = daysToAttend / credit;
       setResult(
@@ -56,9 +56,10 @@ function AttendanceCalculator() {
   };
   return (
     <div className="bg-blue-900 min-h-screen flex flex-col justify-center items-center">
-      <h1 className="text-5xl text-white my-8 font-bold">
+      <h1 className="text-5xl text-white my-8 font-bold text-center px-4 sm:px-8 mx-auto">
         Attendance Calculator
       </h1>
+
       <form
         onSubmit={calculate}
         className="flex flex-col bg-blue-400 w-96 p-4 rounded-sm"
@@ -98,9 +99,11 @@ function AttendanceCalculator() {
           Current Attendance is: {attendance}%
         </p>
 
-        <p className= {`text-white bg-gray-800 p-4 my-2 rounded-md text-center shadow-md ${
+        <p
+          className={`text-white bg-gray-800 p-4 my-2 rounded-md text-center shadow-md ${
             Hidden ? "hidden" : ""
-          }`}>
+          }`}
+        >
           {result}
         </p>
 
