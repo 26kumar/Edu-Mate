@@ -32,7 +32,6 @@ function AttendanceCalculator() {
 
     if (credit === 0) {
       console.log(credit);
-      setWeeksHidden(false);
     }
 
     if (daysToAttend >= 75) {
@@ -42,6 +41,7 @@ function AttendanceCalculator() {
         )}%)`
       );
     } else {
+      setWeeksHidden(false);
       daysToAttend = 3 * total - 4 * present;
       weeksToAttend = daysToAttend / credit;
       setResult(
