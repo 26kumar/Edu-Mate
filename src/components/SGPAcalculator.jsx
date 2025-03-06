@@ -6,7 +6,7 @@ const semesterData = {
   3: { subjects: ["Maths", "IND 4", "Data Structures", "AFL", "DS Lab", "DSD Lab", "Elective"], credits: [4, 2, 3, 3, 3, 2, 1] },
   4: { subjects: ["DAA", "COA", "TOC", "Big Data", "Elective", "DAA Lab"], credits: [4, 3, 3, 3, 3, 2] },
   5: { subjects: ["DSA", "DBMS", "SE", "Elective 1", "Elective 2", "K explore"], credits: [4, 3, 3, 3, 3, 2] },
-  6: { subjects: ["ML", "AI", "UHV", "SPM", "Elective", "AD Lab", "AI Lab"], credits: [4, 3, 3, 3, 3, 1, 1] },
+  6: { subjects: ["ML", "AI", "UHV", "SPM", "Elective", "AD Lab", "AI Lab"], credits: [4, 3, 3, 3, 3, 2, 1] },
   7: { subjects: ["Blockchain", "Cybersecurity", "Elective", "Project"], credits: [4, 3, 3, 6] },
   8: { subjects: ["Internship", "Elective"], credits: [10, 3] },
 };
