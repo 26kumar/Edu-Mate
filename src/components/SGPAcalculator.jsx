@@ -1,39 +1,49 @@
 import React, { useState } from "react";
 
+const semesterData = {
+  1: { subjects: ["Maths", "English", "Chemistry", "B Etc", "Chemistry Lab", "Yoga", "Engineering Lab", "Comm. Lab", "Elective 1", "Elective 2", "Workshop"], credits: [4, 3, 3, 3, 1, 1, 1, 1, 3, 3, 1] },
+  2: { subjects: ["Maths", "Physics", "Sci of Living System", "EVS", "C Progamming Lab", "ED", "Elective 1", "Elective 2"], credits: [4, 4, 3, 3, 4, 1, 1, 1] },
+  3: { subjects: ["Maths", "IND 4", "Data Structures", "AFL", "DS Lab", "DSD Lab", "Elective"], credits: [4, 2, 3, 3, 3, 2, 1] },
+  4: { subjects: ["DAA", "COA", "TOC", "Big Data", "Elective", "DAA Lab"], credits: [4, 3, 3, 3, 3, 2] },
+  5: { subjects: ["DSA", "DBMS", "SE", "Elective 1", "Elective 2", "K explore"], credits: [4, 3, 3, 3, 3, 2] },
+  6: { subjects: ["ML", "AI", "UHV", "SPM", "Elective", "AD Lab", "AI Lab"], credits: [4, 3, 3, 3, 3, 1, 1] },
+  7: { subjects: ["Blockchain", "Cybersecurity", "Elective", "Project"], credits: [4, 3, 3, 6] },
+  8: { subjects: ["Internship", "Elective"], credits: [10, 3] },
+};
+
 function SGPAcalculator() {
-  const subject = ["ML", "AI", "UHV", "SPM", "Elective", "AD Lab", "AI Lab"];
-
-  const [point, setPoint] = useState(new Array(subject.length).fill(""));
-
-  const [sgpa, setSgpa] = useState(0);
-  const [hiddenRes, setHiddenRes] = useState(true);
+  const [semester, setSemester] = useState(6);
+  const subjects = semesterData[semester].subjects;
+  const credits = semesterData[semester].credits;
+  const [points, setPoints] = useState(new Array(subjects.length).fill(""));
+  const [sgpa, setSgpa] = useState(null);
 
   const handleInputChange = (value, index) => {
-    const updatedPoints = [...point];
+    const updatedPoints = [...points];
     updatedPoints[index] = value;
-    setPoint(updatedPoints);
+    setPoints(updatedPoints);
   };
 
-  const CalculateSGPA = () => {
-
-    console.log(point)
-    const points = point.map(Number)
-    const creditObtained =
-      4 * points[0] +
-      3 * (points[1] + points[2] + points[3] + points[4]) +
-      points[5] +
-      points[6];
-    const totalCredit = 18;
-    const res = parseFloat((creditObtained / totalCredit).toFixed(2));
-
-    console.log(res)
-    setSgpa(res);
-    setHiddenRes(false);
+  const calculateSGPA = () => {
+    const numericPoints = points.map(Number);
+    const creditObtained = numericPoints.reduce((acc, point, index) => acc + (point * credits[index]), 0);
+    const totalCredit = credits.reduce((acc, credit) => acc + credit, 0);
+    setSgpa((creditObtained / totalCredit).toFixed(2));
   };
 
   return (
     <div className="bg-blue-900 min-h-screen flex flex-col justify-center items-center p-6">
       <h1 className="text-5xl text-white my-8 font-bold">SGPA Calculator</h1>
+
+      <select 
+        value={semester} 
+        onChange={(e) => setSemester(Number(e.target.value))} 
+        className="mb-4 p-3 rounded-lg bg-gray-800 text-white font-semibold"
+      >
+        {Object.keys(semesterData).map((sem) => (
+          <option key={sem} value={sem}>Semester {sem}</option>
+        ))}
+      </select>
 
       <div className="w-full max-w-2xl overflow-x-auto rounded-lg shadow-lg bg-gray-800">
         <table className="min-w-full border-collapse border border-gray-700">
@@ -44,11 +54,8 @@ function SGPAcalculator() {
             </tr>
           </thead>
           <tbody>
-            {subject.map((sub, index) => (
-              <tr
-                key={index}
-                className="odd:bg-gray-700 even:bg-gray-600 hover:bg-gray-500 transition"
-              >
+            {subjects.map((sub, index) => (
+              <tr key={index} className="odd:bg-gray-700 even:bg-gray-600 hover:bg-gray-500 transition">
                 <td className="border border-gray-700 p-4 text-center">
                   <button className="bg-amber-600 px-6 py-3 rounded-lg w-full text-white font-semibold shadow-md hover:bg-amber-700 transition">
                     {sub}
@@ -56,12 +63,12 @@ function SGPAcalculator() {
                 </td>
                 <td className="border border-gray-700 p-4 text-center">
                   <input
-                  min="0"
-                  max="10"
-                    value={point[index]}
-                    onChange={(e) => handleInputChange(e.target.value, index)}
-                    className="w-full text-center px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500"
                     type="number"
+                    min="0"
+                    max="10"
+                    value={points[index]}
+                    onChange={(e) => handleInputChange(e.target.value, index)}
+                    className="w-full text-center px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-amber-500"
                     placeholder="Enter Points"
                   />
                 </td>
@@ -71,18 +78,13 @@ function SGPAcalculator() {
         </table>
       </div>
 
-      <button
-        onClick={CalculateSGPA}
-        className="bg-amber-600 mt-10 text-white font-bold p-4 rounded-2xl hover:bg-amber-700"
-      >
-        Calculate
+      <button onClick={calculateSGPA} className="bg-amber-600 mt-6 text-white font-bold p-4 rounded-xl hover:bg-amber-700">
+        Calculate SGPA
       </button>
 
-      <p
-        className={`text-white font-bold text-xl mt-5 ${hiddenRes ? "hidden" : ""}`}
-      >
-        Your SGPA is: {sgpa}
-      </p>
+      {sgpa !== null && (
+        <p className="text-white font-bold text-xl mt-5">Your SGPA is: {sgpa}</p>
+      )}
     </div>
   );
 }
