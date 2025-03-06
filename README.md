@@ -47,11 +47,6 @@ Edumate is a web application designed to help KIIT students streamline their aca
 
 ---  
 
-## 🎯 Contributing  
-Want to improve Edumate? Feel free to open issues and pull requests!  
-
----  
-
 ## 📞 Contact  
 If you have any queries or suggestions, reach out at:  
 ✉️ rupesh385k@gmail.com 
