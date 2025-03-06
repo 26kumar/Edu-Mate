@@ -15,7 +15,7 @@ Edumate is a web application designed to help KIIT students streamline their aca
 
 ## 🛠 Tech Stack  
 - **Frontend:** React, Tailwind CSS, HTML, CSS  
-- **Hosting:** GitHub Pages (or mention where you hosted it)  
+- **Hosting:** Vercel - https://11-attendance-calculator.vercel.app/  
 
 ---  
 
