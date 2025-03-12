@@ -34,6 +34,11 @@ function CGPAcalculator() {
     setCurrCredit(totalCurrentCredits);
   }, [semester]); // Runs only when `semester` changes
 
+  useEffect(() => {
+    setIndex(totalPrevCredit * oldCgpa);
+  }, [totalPrevCredit, oldCgpa]);  
+  
+
   const CalculateCGPA = () => {
     if (!oldCgpa && !sgpa) {
       alert("Please enter valid CGPA and SGPA before calculating!");
@@ -46,15 +51,18 @@ function CGPAcalculator() {
       alert("Please enter valid SGPA before calculating!");
       return;
     }
-
-    setIndex(totalPrevCredit * oldCgpa);
-    const newAggregate = totalCummIndex + totalCurrCredit * sgpa;
-
-    const newCalculatedCgpa =
-      newAggregate / (totalCurrCredit + totalPrevCredit);
-    setNewCgpa(newCalculatedCgpa.toFixed(2));
-    setHidden(false);
+  
+    setIndex((prevIndex) => {
+      const newCummIndex = totalPrevCredit * oldCgpa;
+      const newAggregate = newCummIndex + totalCurrCredit * sgpa;
+      const newCalculatedCgpa = newAggregate / (totalCurrCredit + totalPrevCredit);
+  
+      setNewCgpa(newCalculatedCgpa.toFixed(2));
+      setHidden(false);
+      return newCummIndex;  
+    });
   };
+  
 
   return (
     <div className="bg-blue-900 min-h-screen flex flex-col justify-center items-center w-full p-6">
