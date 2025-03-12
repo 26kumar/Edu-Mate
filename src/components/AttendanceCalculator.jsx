@@ -48,7 +48,7 @@ function AttendanceCalculator() {
         `You need to attend ${daysToAttend} more days to make 75% attendance`
       );
       setWeeks(
-        `Hence , You need to attend ${weeksToAttend} more weeks to make 75% attendance`
+        `Hence , You need to attend ${weeksToAttend.toFixed(2)} more weeks to make 75% attendance`
       );
     }
 

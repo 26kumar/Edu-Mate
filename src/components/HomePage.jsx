@@ -24,12 +24,12 @@ function HomePage() {
 
         <button 
           onClick={() => window.open("https://kiitkatalog.gfgkiit.in/", "_blank")}
-          className="green-button">Get PYQ's
+          className="green-button">Previous Year Questions
         </button>
 
         <button 
           onClick={() => window.open("https://drive.google.com/drive/folders/1uA3uJgCl_cegUIPbUtEcFQesMoloz9PD", "_blank")}
-          className="green-button">Get Semester Notes
+          className="green-button">Semester Notes
         </button>
 
         <button 
