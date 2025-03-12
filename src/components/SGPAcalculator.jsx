@@ -7,8 +7,8 @@ const semesterData = {
   4: { subjects: ["Maths", "STW", "OS", "OOPs J", "DBMS", "COA", "OS Lab", "Java Lab", "DBMS Lab", "Elective"], credits: [4, 3, 3, 3, 3, 4, 1, 1, 1, 2] },
   5: { subjects: ["DAA", "SE", "CN", "Engg. Economics", "Elective 1", "Elective 2", "DAA Lab", "CN lab", "K explore"], credits: [3, 4, 3, 3, 3, 3, 1, 1, 2] },
   6: { subjects: ["ML", "AI", "UHV", "SPM", "Elective", "AD Lab", "AI Lab", "Minor Project"], credits: [4, 3, 3, 3, 3, 2, 1, 2] },
-  7: { subjects: ["Blockchain", "Cybersecurity", "Elective", "Project"], credits: [4, 3, 3, 6] },
-  8: { subjects: ["Internship", "Elective"], credits: [10, 3] },
+  7: { subjects: ["Department elective 2", "Department elective 3", "Department elective 4", "Open elective 2", "Legal issues", "AMD Lab", "Project", "Practical Training"], credits: [3,3,3,3,1,2,2,2] },
+  8: { subjects: ["Open Elective", "Department Elective", "Project", "Seminar", "Grand Viva"], credits: [3,3,6,2,2] },
 };
 
 function SGPAcalculator() {
