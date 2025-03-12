@@ -7,7 +7,7 @@ function CGPAcalculator() {
   const [totalCurrCredit, setCurrCredit] = useState(0);
   const [Hidden, setHidden] = useState(true);
 
-  const [semester, setSemester] = useState(1);
+  const [semester, setSemester] = useState(2);
   const [oldCgpa, setOldCgpa] = useState(0);
   const [sgpa, setSgpa] = useState(0);
   const [newCgpa, setNewCgpa] = useState(0);
@@ -35,13 +35,23 @@ function CGPAcalculator() {
   }, [semester]); // Runs only when `semester` changes
 
   const CalculateCGPA = () => {
+    if (!oldCgpa && !sgpa) {
+      alert("Please enter valid CGPA and SGPA before calculating!");
+      return;
+    } else if (!oldCgpa) {
+      alert("Please enter valid CGPA before calculating!");
+      return;
+    }
+    if (!sgpa) {
+      alert("Please enter valid SGPA before calculating!");
+      return;
+    }
+
     setIndex(totalPrevCredit * oldCgpa);
     const newAggregate = totalCummIndex + totalCurrCredit * sgpa;
 
     const newCalculatedCgpa =
       newAggregate / (totalCurrCredit + totalPrevCredit);
-    console.log(newAggregate);
-    console.log(newCalculatedCgpa);
     setNewCgpa(newCalculatedCgpa.toFixed(2));
     setHidden(false);
   };
@@ -59,18 +69,33 @@ function CGPAcalculator() {
             onChange={(e) => setSemester(Number(e.target.value))}
             className="p-4 w-full sm:w-56 rounded-lg bg-blue-500 text-white font-semibold outline-none shadow-md"
           >
-            {Object.keys(semesterData).map((sem) => (
-              <option key={sem} value={sem} className="bg-blue-400 text-black">
-                Semester {sem}
-              </option>
-            ))}
+            {Object.keys(semesterData)
+              .filter((sem) => Number(sem) >= 2 && Number(sem) <= 8) // Show only semesters 2 to 8
+              .map((sem) => (
+                <option
+                  key={sem}
+                  value={sem}
+                  className="bg-blue-400 text-black"
+                >
+                  Semester {sem}
+                </option>
+              ))}
           </select>
 
           <input
             className="bg-blue-500 p-4 rounded-lg w-full sm:w-56 text-white placeholder-gray-200 outline-none shadow-md text-lg"
             type="number"
             placeholder="CGPA till now"
-            onChange={(e) => setOldCgpa(Number(e.target.value))}
+            min="0"
+            max="10"
+            step="0.01"
+            required
+            onChange={(e) => {
+              let value = parseFloat(e.target.value);
+              if (value > 10) value = 10;
+              if (value < 0) value = 0;
+              setOldCgpa(value);
+            }}
           />
         </div>
 
@@ -79,7 +104,16 @@ function CGPAcalculator() {
             className="bg-blue-500 p-4 rounded-lg w-full sm:w-56 text-white placeholder-gray-200 outline-none shadow-md text-lg"
             type="number"
             placeholder="SGPA in this sem"
-            onChange={(e) => setSgpa(Number(e.target.value))}
+            min="0"
+            max="10"
+            step="0.01"
+            required
+            onChange={(e) => {
+              let value = parseFloat(e.target.value);
+              if (value > 10) value = 10;
+              if (value < 0) value = 0;
+              setSgpa(value);
+            }}
           />
 
           <button
