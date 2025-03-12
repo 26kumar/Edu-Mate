@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import AttendanceCalculator from './components/AttendanceCalculator';
 import HomePage from './components/HomePage'
 import SGPAcalculator from './components/SGPAcalculator';
-import CGPAcalculator from './components/CGPAcalculator';
+import CGPAcalculator from './components/CGPAcalculator.jsx';
 
 function App() {
   
