@@ -18,6 +18,10 @@ function HomePage() {
           <button className="green-button">Calculate your SGPA</button>
         </NavLink>
 
+        <NavLink to="/CGPACal">
+          <button className="green-button">Calculate your CGPA</button>
+        </NavLink>
+
         <button 
           onClick={() => window.open("https://kiitkatalog.gfgkiit.in/", "_blank")}
           className="green-button">Get PYQ's

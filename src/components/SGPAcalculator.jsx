@@ -4,9 +4,9 @@ const semesterData = {
   1: { subjects: ["Maths", "English", "Chemistry", "B Etc", "Chemistry Lab", "Yoga", "Engineering Lab", "Comm. Lab", "Elective 1", "Elective 2", "Workshop"], credits: [4, 3, 3, 3, 1, 1, 1, 1, 3, 3, 1] },
   2: { subjects: ["Maths", "Physics", "Sci of Living System", "EVS", "C Progamming Lab", "ED", "Elective 1", "Elective 2"], credits: [4, 4, 3, 3, 4, 1, 1, 1] },
   3: { subjects: ["Maths", "IND 4", "Data Structures", "AFL", "DS Lab", "DSD Lab", "Elective"], credits: [4, 2, 3, 3, 3, 2, 1] },
-  4: { subjects: ["DAA", "COA", "TOC", "Big Data", "Elective", "DAA Lab"], credits: [4, 3, 3, 3, 3, 2] },
-  5: { subjects: ["DSA", "DBMS", "SE", "Elective 1", "Elective 2", "K explore"], credits: [4, 3, 3, 3, 3, 2] },
-  6: { subjects: ["ML", "AI", "UHV", "SPM", "Elective", "AD Lab", "AI Lab"], credits: [4, 3, 3, 3, 3, 2, 1] },
+  4: { subjects: ["Maths", "STW", "OS", "OOPs J", "DBMS", "COA", "OS Lab", "Java Lab", "DBMS Lab", "Elective"], credits: [4, 3, 3, 3, 3, 4, 1, 1, 1, 2] },
+  5: { subjects: ["DAA", "SE", "CN", "Engg. Economics", "Elective 1", "Elective 2", "DAA Lab", "CN lab", "K explore"], credits: [3, 4, 3, 3, 3, 3, 1, 1, 2] },
+  6: { subjects: ["ML", "AI", "UHV", "SPM", "Elective", "AD Lab", "AI Lab", "Minor Project"], credits: [4, 3, 3, 3, 3, 2, 1, 2] },
   7: { subjects: ["Blockchain", "Cybersecurity", "Elective", "Project"], credits: [4, 3, 3, 6] },
   8: { subjects: ["Internship", "Elective"], credits: [10, 3] },
 };
@@ -19,10 +19,16 @@ function SGPAcalculator() {
   const [sgpa, setSgpa] = useState(null);
 
   const handleInputChange = (value, index) => {
-    const updatedPoints = [...points];
-    updatedPoints[index] = value;
-    setPoints(updatedPoints);
+    let num = Number(value);
+  
+    if (Number.isInteger(num) && num >= 0 && num <= 10) {
+      const updatedPoints = [...points];
+      updatedPoints[index] = num;
+      setPoints(updatedPoints);
+    }
   };
+  
+  
 
   const calculateSGPA = () => {
     const numericPoints = points.map(Number);
@@ -66,10 +72,11 @@ function SGPAcalculator() {
                     type="number"
                     min="0"
                     max="10"
+                    step="1"
                     value={points[index]}
                     onChange={(e) => handleInputChange(e.target.value, index)}
                     className="w-full text-center px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-amber-500"
-                    placeholder="Enter Points"
+                    placeholder="Enter Grade Points"
                   />
                 </td>
               </tr>
@@ -90,3 +97,4 @@ function SGPAcalculator() {
 }
 
 export default SGPAcalculator;
+export {semesterData} ;
