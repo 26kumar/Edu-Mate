@@ -7,7 +7,7 @@ Edumate is a web application designed to help KIIT students streamline their aca
 
 ## 🚀 Features  
 - 📊 **Attendance Calculator** – Easily calculate your attendance percentage.  
-- 🎓 **SGPA Calculator** – Compute your SGPA with a simple input.  
+- 🎓 **SGPA and CGPA Calculator** – Compute your SGPA and CGPA with a simple input.  
 - 📚 **Previous Year Questions & Notes** – Get access to study materials for better preparation.  
 - 🔗 **SAP Portal Redirect** – Quick access to the KIIT SAP portal for student services.  
 
@@ -15,14 +15,15 @@ Edumate is a web application designed to help KIIT students streamline their aca
 
 ## 🛠 Tech Stack  
 - **Frontend:** React, Tailwind CSS, HTML, CSS  
-- **Hosting:** Vercel - https://11-attendance-calculator.vercel.app/  
+- **Hosting:** Vercel - https://edu-mate-rupesh-kumars-projects-27a27107.vercel.app/  
 
 ---  
 
 ## 📷 Screenshots  
-![Screenshot 2025-03-07 042428](https://github.com/user-attachments/assets/6ab8405a-c384-427a-8839-2b45b7e2002c)
+![image](https://github.com/user-attachments/assets/b32d3993-2c2d-41a0-b2a0-253627017905)
 ![Screenshot 2025-03-07 042438](https://github.com/user-attachments/assets/806433a6-f6f1-4438-ada2-c65c2009e25c)
-![Screenshot 2025-03-07 042510](https://github.com/user-attachments/assets/301c2d72-3641-45b0-a4e6-8c05e1bf3a8b)
+![image](https://github.com/user-attachments/assets/dc45600f-a732-45ce-ac06-8770d10af206)
+![image](https://github.com/user-attachments/assets/0cd8715c-ab65-4e7d-9fe7-13052e5e9866)
 
 ---  
 
