@@ -15,24 +15,29 @@ function SGPAcalculator() {
   const [semester, setSemester] = useState(6);
   const subjects = semesterData[semester].subjects;
   const credits = semesterData[semester].credits;
-  const [points, setPoints] = useState(new Array(subjects.length).fill(""));
+  const [marks, setMarks] = useState(new Array(subjects.length).fill(""));
   const [sgpa, setSgpa] = useState(null);
+
+  // Function to convert marks (0-100) to grade points (1-10)
+  const convertMarksToGradePoint = (marks) => {
+    if (marks < 0) return 0;
+    if (marks > 100) return 10;
+    return Math.floor(marks / 10) + 1; // Divides marks into grade points
+  };
 
   const handleInputChange = (value, index) => {
     let num = Number(value);
-  
-    if (Number.isInteger(num) && num >= 0 && num <= 10) {
-      const updatedPoints = [...points];
-      updatedPoints[index] = num;
-      setPoints(updatedPoints);
+
+    if (Number.isInteger(num) && num >= 0 && num <= 100) {
+      const updatedMarks = [...marks];
+      updatedMarks[index] = num;
+      setMarks(updatedMarks);
     }
   };
-  
-  
 
   const calculateSGPA = () => {
-    const numericPoints = points.map(Number);
-    const creditObtained = numericPoints.reduce((acc, point, index) => acc + (point * credits[index]), 0);
+    const gradePoints = marks.map(convertMarksToGradePoint);
+    const creditObtained = gradePoints.reduce((acc, point, index) => acc + (point * credits[index]), 0);
     const totalCredit = credits.reduce((acc, credit) => acc + credit, 0);
     setSgpa((creditObtained / totalCredit).toFixed(2));
   };
@@ -50,13 +55,14 @@ function SGPAcalculator() {
           <option key={sem} value={sem}>Semester {sem}</option>
         ))}
       </select>
+      
 
       <div className="w-full max-w-2xl overflow-x-auto rounded-lg shadow-lg bg-gray-800">
         <table className="min-w-full border-collapse border border-gray-700">
           <thead>
             <tr className="bg-gray-900 text-gray-200">
               <th className="border border-gray-700 p-4 text-lg">Subject</th>
-              <th className="border border-gray-700 p-4 text-lg">Points</th>
+              <th className="border border-gray-700 p-4 text-lg">Marks (Out of 100)</th>
             </tr>
           </thead>
           <tbody>
@@ -71,12 +77,13 @@ function SGPAcalculator() {
                   <input
                     type="number"
                     min="0"
-                    max="10"
+                    max="100"
                     step="1"
-                    value={points[index]}
+                    value={marks[index]}
+                    onWheel={(e) => e.target.blur()}
                     onChange={(e) => handleInputChange(e.target.value, index)}
                     className="w-full text-center px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-amber-500"
-                    placeholder="Enter Grade Points"
+                    placeholder="Enter Marks"
                   />
                 </td>
               </tr>
@@ -97,4 +104,4 @@ function SGPAcalculator() {
 }
 
 export default SGPAcalculator;
-export {semesterData} ;
+export { semesterData };

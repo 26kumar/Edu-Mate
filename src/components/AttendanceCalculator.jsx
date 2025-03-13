@@ -68,12 +68,14 @@ function AttendanceCalculator() {
           type="number"
           placeholder="No. of class attended"
           onChange={(e) => setPresent(Number(e.target.value))}
+          onWheel={(e) => e.target.blur()}
           className="bg-blue-200 rounded p-3 m-2 outline-none hover:bg-blue-300 shadow-2xl"
         />
         <input
           type="number"
           placeholder="Total no. of class"
           onChange={(e) => setTotal(Number(e.target.value))}
+          onWheel={(e) => e.target.blur()}
           className="bg-blue-200 rounded p-3 m-2 outline-none hover:bg-blue-300 shadow-2xl"
         />
 
@@ -81,6 +83,7 @@ function AttendanceCalculator() {
           type="number"
           placeholder="Subject Credit"
           onChange={(e) => setCredit(Number(e.target.value))}
+          onWheel={(e) => e.target.blur()}
           className="bg-blue-200 rounded p-3 m-2 outline-none hover:bg-blue-300 shadow-2xl"
         />
 

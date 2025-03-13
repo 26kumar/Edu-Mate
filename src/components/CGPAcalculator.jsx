@@ -98,6 +98,7 @@ function CGPAcalculator() {
             max="10"
             step="0.01"
             required
+            onWheel={(e) => e.target.blur()}
             onChange={(e) => {
               let value = parseFloat(e.target.value);
               if (value > 10) value = 10;
@@ -116,6 +117,7 @@ function CGPAcalculator() {
             max="10"
             step="0.01"
             required
+            onWheel={(e) => e.target.blur()}
             onChange={(e) => {
               let value = parseFloat(e.target.value);
               if (value > 10) value = 10;
